@@ -56,6 +56,8 @@ class _AddContactPageState extends State<AddContactPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.purple.shade100,
         title: const Text("Adicione Contato"),
       ),
       body: SingleChildScrollView(
@@ -137,9 +139,7 @@ class _AddContactPageState extends State<AddContactPage> {
                             name = value;
                           },
                           validator: (value) {
-                            if (value == null) {
-                              "Este campo é obrigatorio";
-                            }
+                            if (value!.isEmpty) "Este campo é obrigatorio";
                           },
                         ),
                         FormFieldCustom(
@@ -172,7 +172,7 @@ class _AddContactPageState extends State<AddContactPage> {
                             ElevatedButton(
                                 style: const ButtonStyle(
                                     backgroundColor:
-                                        MaterialStatePropertyAll(Colors.red)),
+                                        MaterialStatePropertyAll(Colors.grey)),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
@@ -181,7 +181,12 @@ class _AddContactPageState extends State<AddContactPage> {
                                   style: TextStyle(color: Colors.white),
                                 )),
                             ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      Colors.deepPurple),
+                                ),
                                 onPressed: () async {
+                                  _formKey.currentState!.validate();
                                   if (_formKey.currentState!.validate()) {
                                     await ContactsBack4AppRepository
                                         .createContact(Contact.create(
@@ -194,8 +199,12 @@ class _AddContactPageState extends State<AddContactPage> {
                                                 : ""));
                                     Navigator.pop(context);
                                   }
+                                  setState(() {});
                                 },
-                                child: const Text("Salva")),
+                                child: const Text(
+                                  "Salva",
+                                  style: TextStyle(color: Colors.white),
+                                )),
                           ],
                         )
                       ],

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lista_contatos_app/app_back4app_config.dart';
 
 import '../Data/contact_model.dart';
 
@@ -15,9 +16,9 @@ class ContactsBack4AppRepository {
   static Future<ContactsBack4AppModel> getContactsList() async {
     _dio = Dio();
     _dio.options.headers["X-Parse-Application-Id"] =
-        "XEeuSkjAEKBwdwOXl1vgGAwvqHwyNKDwodKkRDCg";
+        AppBack4AppApiConfig.parseApplicationId;
     _dio.options.headers["X-Parse-REST-API-Key"] =
-        "0qCVuUtvMFNItVxfmdlrPhTxPhXKblUd3XWu3fWK";
+        AppBack4AppApiConfig.parseRestApiKey;
     _dio.options.headers["content-type"] = "application/json";
     _dio.options.baseUrl = baseUrl;
     var url = "/Contacts";
@@ -38,9 +39,9 @@ class ContactsBack4AppRepository {
   static Future<void> createContact(Contact contact) async {
     _dio = Dio();
     _dio.options.headers["X-Parse-Application-Id"] =
-        "XEeuSkjAEKBwdwOXl1vgGAwvqHwyNKDwodKkRDCg";
+        AppBack4AppApiConfig.parseApplicationId;
     _dio.options.headers["X-Parse-REST-API-Key"] =
-        "0qCVuUtvMFNItVxfmdlrPhTxPhXKblUd3XWu3fWK";
+        AppBack4AppApiConfig.parseRestApiKey;
     _dio.options.headers["content-type"] = "application/json";
 
     var url = "$baseUrl/Contacts";

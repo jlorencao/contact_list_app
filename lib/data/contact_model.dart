@@ -25,7 +25,7 @@ class Contact {
   String lastname = "";
   String phoneNumber = "";
   String email = "";
-  String imagePath = "";
+  String? imagePath;
   String createdAt = "";
   String updatedAt = "";
 
@@ -43,7 +43,7 @@ class Contact {
   Contact.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];
     name = json['name'];
-    lastname = json['Lastname'];
+    lastname = json['lastName'];
     phoneNumber = json['phoneNumber'];
     email = json['email'];
     imagePath = json['imagePath'];
@@ -54,7 +54,7 @@ class Contact {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
-    data['Lastname'] = lastname;
+    data['lastName'] = lastname;
     data['phoneNumber'] = phoneNumber;
     data['email'] = email;
     data['imagePath'] = imagePath;
